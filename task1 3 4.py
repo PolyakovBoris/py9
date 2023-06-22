@@ -11,7 +11,6 @@ import json
 
 def deco_takes_values_from_csv(func: Callable):
     def wrapper(*args, **kwargs):
-
         with open('pull.csv', 'r', encoding='utf-8') as f:
             reader = csv.reader(f)
             next(reader)
@@ -29,7 +28,7 @@ def deco_takes_values_from_csv(func: Callable):
                     if (len(func_res) == 1):
                         my_dict[f'результат x'] = func_res
                     elif len(func_res) == 2:
-                        x1 ,x2 = func_res
+                        x1, x2 = func_res
                         my_dict[f'результат x1'] = x1
                         my_dict[f'результат x2'] = x2
                 else:
@@ -40,17 +39,7 @@ def deco_takes_values_from_csv(func: Callable):
         return
     return wrapper
 
-def deco_save_results(func: Callable):
 
-    def wrapper(*args, **kwargs):
-        # print(a)
-        func(*args)
-        # print(f' ******************{}********************')
-        return
-    return wrapper
-
-
-@deco_save_results
 @deco_takes_values_from_csv
 def square_root(a: int, b: int, c: int):
     print('_________________________________')
@@ -73,5 +62,4 @@ def square_root(a: int, b: int, c: int):
         return None
 
 
-
-square_root(2,7,5)
+square_root(2, 7, 5)
